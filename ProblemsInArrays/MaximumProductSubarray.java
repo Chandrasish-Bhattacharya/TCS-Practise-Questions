@@ -22,12 +22,26 @@ public class MaximumProductSubarray{
         return maxProduct;
     }
 
+    public static int optimalSol(int[] arr){
+        int preFixSum = 1 , suffixSum = 0;
+        int ans = Integer.MIN_VALUE;
+        for(int i = 0 ; i < arr.length ; i++){
+            if(preFixSum == 0) preFixSum = 1;
+            if(suffixSum == 0) suffixSum = 1;
+
+            preFixSum *= arr[i];
+            suffixSum *= arr[arr.length - i - 1];
+
+            ans = Math.max(ans , Math.max(preFixSum, suffixSum));
+        }
+        return ans;
+    }
     
     public static void main(String[] args) {
          // Sample input
         int[] nums = {2, 3, -2, 4};
 
         // Print the result
-        System.out.println(bruteForce(nums));
+        System.out.println(optimalSol(nums));
     }
 }
