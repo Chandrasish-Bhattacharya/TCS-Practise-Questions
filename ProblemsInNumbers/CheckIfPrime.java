@@ -64,14 +64,23 @@ class inputMethod {
 }
 
 public class CheckIfPrime {
-
-    public static void main(String[] args) {
-        inputMethod inputM = new inputMethod();
-        ArrayList<Integer> list = inputM.inputWithCommas();
-        System.out.println("Case 3: 1,2,3,4,5");
-        for (int num : list) {
-            System.out.print(num + " ");
+    public static boolean CheckPrime(int n){
+    int cnt = 0;
+        for(int i = 1 ; i <=Math.sqrt(n) ; i++){
+            if(n % i == 0){
+                cnt++;
+                if(n / i != i){
+                    cnt++;
+                }
+            } 
         }
-        System.out.println();
+        return cnt == 2;
+    }
+    public static void main(String[] args) {
+        // inputMethod inputM = new inputMethod();
+        // ArrayList<Integer> list = inputM.parseNumbers();
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        System.out.println(CheckPrime(n));
     }
 }
